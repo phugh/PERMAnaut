@@ -21,7 +21,7 @@
       <meta property="og:image:type" content="image/png">
       <meta property="og:image:width" content="558">
       <meta property="og:image:height" content="270">
-      <meta property="og:description" content="PERMA Wellbeing Profiler. Test yo'self before your wreck yo'self. Based on Butler, J., &amp; Kern, M. L. (2015).">
+      <meta property="og:description" content="PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).">
 
       <!-- Add to homescreen for Safari on iOS -->
       <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,14 +41,14 @@
       <meta name="format-detection" content="address=no"/>
 
       <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
       <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
       <div id="fb-root"></div>
       <div class="container">
 
-        <div id="topText" class="card-panel blue white-text">PERMAnaut<span class=""></span></div>
+        <div class="card-panel blue white-text"><a href="javascript:location.reload();" class="white-text">PERMAnaut</a><span id="topText"></span></div>
 
         <div id="quizPane">
 
@@ -72,17 +72,17 @@
                     <div class="row">
                       <div class="input-field">
                         <p class="col s5">Name to print on results:</p>
-                        <input id="nameInput" type="text" class="col s7"/>
+                        <input id="nameInput" type="text" class="col s7" placeholder="(optional)"/>
                       </div>
                     </div>
                     <div class="row">
                       <p class="col s5">Compare results to averages?<p>
                       <div class="switch col s7">
                         <label>
-                          Off
+                          No
                           <input type="checkbox" id="goCompare">
                           <span class="lever"></span>
-                          On
+                          Yes
                         </label>
                       </div>
                     </div>
@@ -354,18 +354,61 @@
               <div class="col s12">
                 <div class="card white">
                   <div class="card-content">
-                    <span class="card-title">Overview</span>
                     <input id="fbButton" class="right print-hide" type="button" onclick="postToFeed()" value="Share on Facebook" />
+                    <span class="card-title">Overview</span>
                     <p>"In his 2011 book Flourish, Dr. Martin Seligman, distinguished Professor of Psychology at the University of  Pennsylvania and one of the founders of the field of positive psychology, defined 5 pillars of wellbeing:  PERMA (positive emotion, engagement, relationships, meaning, accomplishment). The PERMA-Profiler  measures these five pillars, along with negative emotion and health." (Butler &amp; Kern, 2015)</p>
                     <br/>
                     <p id="keyText">Key: <span class="blue-text">blue = your results</span>, <span class="teal-text">teal = averages</span> (n=13026).</p>
                     <canvas id="resultsChart" class="responsive-img"></canvas><br/>
                     <h4>Scores (/10)</h4>
-                    <p><b>P</b>: <span class="pRes"></span> <b>E</b>: <span class="eRes"></span> <b>R</b>: <span class="rRes"></span> <b>M</b>: <span class="mRes"></span> <b>A</b>: <span class="aRes"></span></p>
+                    <p>
+                      <b>P</b>: <span class="pRes"></span><br/>
+                      <b>E</b>: <span class="eRes"></span><br/>
+                      <b>R</b>: <span class="rRes"></span><br/>
+                      <b>M</b>: <span class="mRes"></span><br/>
+                      <b>A</b>: <span class="aRes"></span>
+                    </p>
                     <p>&nbsp;</p>
-                    <p><b>Negative Emotions</b>: <span class="nRes"></span> <b>Health</b>: <span class="hRes"></span> <b>Loneliness</b>: <span class="lonRes"></span></p>
+                    <p>
+                      <b>Negative Emotions</b>: <span class="nRes"></span><br/>
+                      <b>Health</b>: <span class="hRes"></span><br/>
+                      <b>Loneliness</b>: <span class="lonRes"></span>
+                    </p>
                     <p>&nbsp;</p>
-                    <p><b>Overall Wellbeing</b>: <span class="owRes"></span> / 10</p>
+                    <p><b>Overall Wellbeing</b>: <span class="owRes"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row prevResTable">
+            <div class="col s12">
+              <div class="card white">
+                <div class="card-content">
+                  <span class="card-title">Previous Results</span>
+                  <table class="striped">
+                      <thead>
+                        <tr>
+                            <th data-field="name">Name</th>
+                            <th data-field="date">Date</th>
+                            <th data-field="p+">+</th>
+                            <th data-field="p-">-</th>
+                            <th data-field="e">E</th>
+                            <th data-field="r">R</th>
+                            <th data-field="m">M</th>
+                            <th data-field="a">A</th>
+                            <th data-field="h">H</th>
+                            <th data-field="l">L</th>
+                            <th data-field="ow">OW</th>
+                        </tr>
+                      </thead>
+                      <tbody class="tbody">
+                      </tbody>
+                  </table>
+                  <p>&nbsp;</p>
+                  <div class="right-align print-hide">
+                      <a href="#!" class="waves-effect waves-light btn-flat" onclick="clearPreviousScores()">Clear previous scores.</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -444,39 +487,6 @@
             </div>
           </div>
 
-          <div class="row prevResTable">
-            <div class="col s12">
-              <div class="card white">
-                <div class="card-content">
-                  <span class="card-title">Previous Results</span>
-                  <table class="striped">
-                      <thead>
-                        <tr>
-                            <th data-field="name">Name</th>
-                            <th data-field="date">Date</th>
-                            <th data-field="p+">+</th>
-                            <th data-field="p-">-</th>
-                            <th data-field="e">E</th>
-                            <th data-field="r">R</th>
-                            <th data-field="m">M</th>
-                            <th data-field="a">A</th>
-                            <th data-field="h">H</th>
-                            <th data-field="l">L</th>
-                            <th data-field="ow">OW</th>
-                        </tr>
-                      </thead>
-                      <tbody class="tbody">
-                      </tbody>
-                  </table>
-                  <p>&nbsp;</p>
-                  <div class="right-align print-hide">
-                      <a href="#!" class="waves-effect waves-light btn-flat" onclick="clearPreviousScores()">Clear previous scores.</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="row">
             <div class="col s12">
               <div class="card white">
@@ -493,8 +503,8 @@
       </div><!-- end of container -->
 
       <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
       <script src="js/main.js"></script>
       <script>
         (function(d, s, id) {
