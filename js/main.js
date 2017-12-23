@@ -10,7 +10,8 @@ function postToFeed() {
   var obj = {
     method: 'feed',
     link: 'http://www.phugh.es/tech/permanaut/',
-    description: 'I just got a wellbeing score of ' + $('.owRes').text() + '/10, what will you get?',
+    description: 'I just got a wellbeing score of ' + 
+        $('.owRes').text() + '/10, what will you get?',
     picture: 'http://www.phugh.es/tech/permanaut/tile-wide.png',
     name: 'PERMAnaut Wellbeing Quiz',
   };
@@ -141,7 +142,8 @@ function calculateScores() {
     'Happy': [],
   };
 
-  // get values from sliders, convert to readable number, and dump the results in the corresponding container then add them up
+  // get values from sliders, convert to readable number,
+  // and dump the results in the corresponding container
   $('input[id^=P]').each(function() {
     PERMAScores['Positive Emotion'].push(calcSliders(this));
   });
@@ -175,15 +177,17 @@ function calculateScores() {
       PERMAScores['Meaning'],
       PERMAScores['Accomplishment']
   );
-  PERMAScores['Overall'] = parseFloat((owTotal.reduce(add, PERMAScores['Happy']) / 16).toFixed(2));
+  PERMAScores['Overall'] = parseFloat(
+      (owTotal.reduce(add, PERMAScores['Happy']) / 16).toFixed(2));
 
   // calculate averages to two decimal places
   for (var key in PERMAScores) {
     if (PERMAScores.hasOwnProperty(key)) {
-      if (key === 'Happy' || key === 'Loneliness' || key === 'Overall') { // HERE
+      if (key === 'Happy' || key === 'Loneliness' || key === 'Overall') {
         PERMAScores[key] = PERMAScores[key];
       } else {
-        PERMAScores[key] = parseFloat((PERMAScores[key].reduce(add, 0) / 3).toFixed(2));
+        PERMAScores[key] = parseFloat(
+            (PERMAScores[key].reduce(add, 0) / 3).toFixed(2));
       }
     }
   }
@@ -322,7 +326,8 @@ $(document).ready(function() {
     });
     getPreviousScores();
   } else {
-    Materialize.toast('Offline storage unavailable. Score saving is disabled.', 4000);
+    Materialize.toast(
+        'Offline storage unavailable. Score saving is disabled.', 4000);
   }
 
   // set some global chart options
@@ -330,6 +335,10 @@ $(document).ready(function() {
 
   // check for keypresses
   document.onkeydown = checkKey;
+
+  // Facebook share button event listener
+  document.getElementById('fbButton').addEventListener(
+    'click', postToFeed, false);
 
   // Facebook init
   window.fbAsyncInit = function() {
@@ -339,4 +348,14 @@ $(document).ready(function() {
       version: 'v2.5',
     });
   };
+
+  // clear previous scores buttons event listeners
+  document.getElementById('clear1').addEventListener(
+      'click', clearPreviousScores, false);
+  document.getElementById('clear2').addEventListener(
+      'click', clearPreviousScores, false);
+
+  // done button event listener
+    document.getElementById('doneLink').addEventListener(
+      'click', calculateScores, false);
 });
