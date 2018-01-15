@@ -178,7 +178,7 @@ function calculateScores() {
       PERMAScores['Accomplishment']
   );
   PERMAScores['Overall'] = parseFloat(
-      (owTotal.reduce(add, PERMAScores['Happy']) / 16).toFixed(2));
+        (owTotal.reduce(add, PERMAScores['Happy']) / 16).toFixed(2));
 
   // calculate averages to two decimal places
   for (var key in PERMAScores) {
@@ -215,12 +215,13 @@ function calculateScores() {
     PERMAScores['Relationships'],
     PERMAScores['Meaning'],
     PERMAScores['Accomplishment'],
-    PERMAScores['Negative Emotion'],
     PERMAScores['Health'],
+    PERMAScores['Negative Emotion'],
+    PERMAScores['Loneliness'],
     PERMAScores['Overall'],
   ];
   var data = {
-    labels: ['P', 'E', 'R', 'M', 'A', 'N', 'H', 'OW'],
+    labels: ['P', 'E', 'R', 'M', 'A', 'H', 'N', 'L', 'OW'],
     datasets: [{
       label: 'Your Results',
       backgroundColor: '#2196f3',
@@ -228,7 +229,7 @@ function calculateScores() {
     }],
   };
   var dataCompare = {
-    labels: ['P', 'E', 'R', 'M', 'A', 'N', 'H', 'OW'],
+    labels: ['P', 'E', 'R', 'M', 'A', 'H', 'N', 'L', 'OW'],
     datasets: [
       {
         label: 'Your Results',
@@ -238,7 +239,7 @@ function calculateScores() {
       {
         label: 'Average',
         backgroundColor: '#00bcd4',
-        data: [6.79, 7.41, 6.99, 7.17, 7.37, 7.14, 4.49, 7.03],
+        data: [6.79, 7.41, 6.99, 7.17, 7.37, 7.03, 4.49, 0.00, 7.14],
       },
     ],
   };
@@ -304,6 +305,7 @@ function calculateScores() {
       'H': PERMAScores['Health'],
       'L': PERMAScores['Loneliness'],
       'O': PERMAScores['Overall'],
+      'HAP': PERMAScores['Happy'],
     };
     window.localStorage.setItem('PNS' + (testNo += 1), JSON.stringify(lsd));
   }
@@ -316,19 +318,6 @@ $(document).ready(function() {
 
   // test localStorage availability
   lsTest();
-
-  // if localStorage is available, itterate test number
-  if (storage === true) {
-    $.each(window.localStorage, function(i, v) {
-      if (i.match(/^PNS/)) {
-        testNo += 1;
-      }
-    });
-    getPreviousScores();
-  } else {
-    Materialize.toast(
-        'Offline storage unavailable. Score saving is disabled.', 4000);
-  }
 
   // set some global chart options
   Chart.defaults.global.responsive = true;
@@ -349,6 +338,19 @@ $(document).ready(function() {
     });
   };
 
+  // if localStorage is available, itterate test number
+  if (storage === true) {
+    $.each(window.localStorage, function(i, v) {
+      if (i.match(/^PNS/)) {
+        testNo += 1;
+      }
+    });
+    getPreviousScores();
+  } else {
+    Materialize.toast(
+        'Offline storage unavailable. Score saving is disabled.', 4000);
+  }
+
   // clear previous scores buttons event listeners
   document.getElementById('clear1').addEventListener(
       'click', clearPreviousScores, false);
@@ -356,6 +358,6 @@ $(document).ready(function() {
       'click', clearPreviousScores, false);
 
   // done button event listener
-    document.getElementById('doneLink').addEventListener(
+  document.getElementById('doneLink').addEventListener(
       'click', calculateScores, false);
 });
