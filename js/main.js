@@ -3,25 +3,8 @@ var testNo = 0; // testNo becomes a count of previous tests in localStorage
 var storage = false; // localStorage availability
 
 /**
-* Handles Facebook score sharing
-* @function postToFeed
-*/
-function postToFeed() {
-  var obj = {
-    method: 'feed',
-    link: 'http://www.phugh.es/tech/permanaut/',
-    description: 'I just got a wellbeing score of ' + 
-        $('.owRes').text() + '/10, what will you get?',
-    picture: 'http://www.phugh.es/tech/permanaut/tile-wide.png',
-    name: 'PERMAnaut Wellbeing Quiz',
-  };
-  FB.ui(obj);
-}
-
-/**
 * Test if localStorage is available
 * @function lsTest
-* @return {boolean}
 */
 function lsTest() {
   var test = 'test';
@@ -29,10 +12,8 @@ function lsTest() {
     window.localStorage.setItem(test, test);
     window.localStorage.removeItem(test);
     if (!storage) storage = true;
-    return true;
   } catch (e) {
     if (storage) storage = false;
-    return false;
   }
 }
 
@@ -76,11 +57,11 @@ function getPreviousScores() {
       var retrievedObject = window.localStorage.getItem('PNS' + (i + 1));
       var q = JSON.parse(retrievedObject);
       $('.tbody').append('<tr><td>' + q.Name + '</td><td>' + q.Date +
-                '</td><td>' + q.P + '</td><td>' + q.N +
-                '</td><td>' + q.E + '</td><td>' + q.R +
-                '</td><td>' + q.M + '</td><td>' + q.A +
-                '</td><td>' + q.H + '</td><td>' + q.L +
-                '</td><td>' + q.O + '</td></tr>');
+          '</td><td>' + q.P + '</td><td>' + q.N +
+          '</td><td>' + q.E + '</td><td>' + q.R +
+          '</td><td>' + q.M + '</td><td>' + q.A +
+          '</td><td>' + q.H + '</td><td>' + q.L +
+          '</td><td>' + q.O + '</td></tr>');
     }
     $('.prevResTable').show();
   }
@@ -94,9 +75,7 @@ function clearPreviousScores() {
   $('.tbody').empty();
   $('.prevResTable').hide();
   $.each(window.localStorage, function(i, v) {
-    if (i.match(/^PNS/)) {
-      window.localStorage.removeItem(i);
-    }
+    if (i.match(/^PNS/)) window.localStorage.removeItem(i);
   });
   Materialize.toast('Previous scores cleared', 2500);
 }
@@ -278,8 +257,8 @@ function calculateScores() {
   var month = d.getMonth() + 1;
   var day = d.getDate();
   var outputDate = (('' + day).length < 2 ? '0' : '') + day + '/' +
-    (('' + month).length < 2 ? '0' : '') + month + '/' +
-    d.getFullYear();
+      (('' + month).length < 2 ? '0' : '') + month + '/' +
+      d.getFullYear();
 
   var inp = $('#nameInput').val();
   var tinp = $.trim(inp);
@@ -319,31 +298,13 @@ $(document).ready(function() {
   // test localStorage availability
   lsTest();
 
-  // set some global chart options
-  Chart.defaults.global.responsive = true;
-
   // check for keypresses
   document.onkeydown = checkKey;
-
-  // Facebook share button event listener
-  document.getElementById('fbButton').addEventListener(
-    'click', postToFeed, false);
-
-  // Facebook init
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId: '1096633653680137',
-      xfbml: true,
-      version: 'v2.5',
-    });
-  };
 
   // if localStorage is available, itterate test number
   if (storage === true) {
     $.each(window.localStorage, function(i, v) {
-      if (i.match(/^PNS/)) {
-        testNo += 1;
-      }
+      if (i.match(/^PNS/)) testNo += 1;
     });
     getPreviousScores();
   } else {
@@ -360,4 +321,7 @@ $(document).ready(function() {
   // done button event listener
   document.getElementById('doneLink').addEventListener(
       'click', calculateScores, false);
+
+  // set some global chart options
+  Chart.defaults.global.responsive = true;
 });

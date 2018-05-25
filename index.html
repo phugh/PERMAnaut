@@ -1,77 +1,81 @@
 <!doctype html>
 <html lang="en-GB">
-    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
-      <meta charset="utf-8">
-      <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
-      <meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
-      <title>PERMAnaut</title>
-      <meta name="description" content="PERMA Measurement Tool based on Butler, J., &amp; Kern, M. L. (2015)">
-      <link type="text/plain" rel="author" href="https://phugh.es/tech/permanaut/humans.txt">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#" itemscope itemtype="http://schema.org/Thing">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
+    <title>PERMAnaut</title>
+    <meta name="description" content="PERMA Measurement Tool based on Butler, J., &amp; Kern, M. L. (2015)">
+    <link type="text/plain" rel="author" href="https://phugh.es/tech/permanaut/humans.txt">
 
-      <!-- Mobile Stuff -->
-      <meta name="HandheldFriendly" content="True">
-      <meta name="MobileOptimized" content="320">
-      <meta name="mobile-web-app-capable" content="yes">
-      <link rel="manifest" href="/manifest.json">
+    <!-- Mobile Stuff -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
 
-      <!-- OpenGraph data -->
-      <meta property="og:locale" content="en_GB">
-      <meta property="og:title" content="PERMAnaut">
-      <meta property="og:type" content="website">
-      <meta property="og:url" content="https://phugh.es/tech/permanaut/">
-      <meta property="og:image" content="https://phugh.es/tech/permanaut/tile-wide.png">
-      <meta property="og:image:secure_url" content="https://phugh.es/tech/permanaut/tile-wide.png">
-      <meta property="og:image:type" content="image/png">
-      <meta property="og:image:width" content="558">
-      <meta property="og:image:height" content="270">
-      <meta property="og:description" content="PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).">
+    <!-- OpenGraph data -->
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content="PERMAnaut">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://phugh.es/tech/permanaut/">
+    <meta property="og:image" content="https://phugh.es/tech/permanaut/tile-wide.png">
+    <meta property="og:image:secure_url" content="https://phugh.es/tech/permanaut/tile-wide.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="558">
+    <meta property="og:image:height" content="270">
+    <meta property="og:description" content="PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).">
 
-      <!-- Twitter data -->
-      <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:site" content="@peterhughesmcr">
-      <meta name="twitter:creator" content="@peterhughesmcr">
-      <meta name="twitter:title" content="PERMAnaut - Peter Hughes">
-      <meta name="twitter:description" content="PERMANaut - An interactive PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).">
-      <meta name="twitter:image:src" content="https://phugh.es/tech/permanaut/tile-wide.png">
+    <!-- Twitter data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@peterhughesmcr">
+    <meta name="twitter:creator" content="@peterhughesmcr">
+    <meta name="twitter:title" content="PERMAnaut - Peter Hughes">
+    <meta name="twitter:description" content="PERMANaut - An interactive PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).">
+    <meta name="twitter:image:src" content="https://phugh.es/tech/permanaut/tile-wide.png">
 
-      <!-- Add to homescreen for Safari on iOS -->
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-      <meta name="apple-mobile-web-app-title" content="PERMAnaut">
-      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PERMAnaut">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-      <!-- Tile icon for Windows 10 (144x144 + tile color) -->
-      <meta name="msapplication-TileImage" content="tile.png">
-      <meta name="msapplication-TileColor" content="#2196F3">
+    <!-- Tile icon for Windows 10 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="tile.png">
+    <meta name="msapplication-TileColor" content="#2196F3">
+    <meta name="msapplication-navbutton-color" content="#2196F3">
+    <meta name="msapplication-tooltip" content="PERMANaut - An interactive PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).">
+    <meta name="msapplication-starturl" content="https://www.phugh.es/tech.permanaut/index.html?pinned=true">
 
-      <!-- Chrome for Android theme color -->
-      <meta name="theme-color" content="#2196F3">
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#2196F3">
 
-      <!-- Disable format detection -->
-      <meta name="format-detection" content="telephone=no"/>
-      <meta name="format-detection" content="address=no"/>
+    <!-- Disable format detection -->
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-      <!-- Misc -->
-      <meta name="author" content="Peter Hughes - www.phugh.es">
-      <meta name="robots" content="index, follow">
-      <link rel="canonical" href="https://phugh.es/tech/permanaut/">
+    <!-- Misc -->
+    <meta name="author" content="Peter Hughes - www.phugh.es">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://phugh.es/tech/permanaut/">
+    <link rel="shortlink" href="phugh.es/tech/permanaut">
 
-      <script type='application/ld+json'> 
-        {
-          "@context": "http://www.schema.org",
-          "@type": "product",
-          "brand": "Peter Hughes",
-          "name": "PERMAnaut",
-          "image": "https://phugh.es/tech/permanaut/tile-wide.png",
-          "description": "PERMANaut - An interactive PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).\">"
-        }
-      </script>
+    <script type="application/ld+json">
+      {
+        "@context": "http://www.schema.org",
+        "@type": "product",
+        "brand": "Peter Hughes",
+        "name": "PERMAnaut",
+        "image": "https://phugh.es/tech/permanaut/tile-wide.png",
+        "description": "PERMANaut - An interactive PERMA Wellbeing Profiler. Based on Butler, J., &amp; Kern, M. L. (2015).\">"
+      }
+    </script>
 
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-      <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
       <div id="fb-root"></div>
       <div class="container">
 
@@ -104,7 +108,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <p class="col s5">Compare results to averages?<p>
+                      <p class="col s5">Compare results to global averages?</p>
                       <div class="switch col s7">
                         <label>
                           No
@@ -382,7 +386,6 @@
               <div class="col s12">
                 <div class="card white">
                   <div class="card-content">
-                    <input id="fbButton" class="right print-hide" type="button" value="Share on Facebook" />
                     <span class="card-title">Overview</span>
                     <p>"In his 2011 book Flourish, Dr. Martin Seligman, distinguished Professor of Psychology at the University of  Pennsylvania and one of the founders of the field of positive psychology, defined 5 pillars of wellbeing:  PERMA (positive emotion, engagement, relationships, meaning, accomplishment). The PERMA-Profiler  measures these five pillars, along with negative emotion and health." (Butler &amp; Kern, 2015)</p>
                     <br/>
@@ -531,18 +534,9 @@
         </div><!-- eng of resultsPane -->
       </div><!-- end of container -->
 
-      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
       <script src="js/main.js"></script>
-      <script async defer>
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "https://connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-      </script>
     </body>
 </html>
